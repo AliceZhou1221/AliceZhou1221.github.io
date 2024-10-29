@@ -42,7 +42,6 @@ plot_ly(hourly_department_counts, x = ~order_hour_of_day, y = ~n,
                       tickvals = 0:23),
          yaxis = list(title = "Number of Orders"))
 ```
-Fresh fruits and vegetables are the most frequently ordered on instacart.
 
 Column {data-width=400}
 -----------------------------------------------------------------------
