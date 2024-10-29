@@ -1,0 +1,78 @@
+---
+title: "Plotly"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+# interactive plots
+
+```{r}
+library(tidyverse)
+library(p8105.datasets)
+library(plotly)
+```
+
+Initial data cleaning
+
+```{r}
+instacart_df = 
+  instacart %>% 
+  sample_n(5000) %>% 
+  select(reordered, user_id, order_dow, order_hour_of_day,
+         product_name, aisle, department) %>% 
+  filter(!department == "missing") %>% 
+  mutate(
+    order_dow = factor(order_dow, levels = 0:6, labels = c("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
+))
+```
+
+```{r}
+instacart_df %>% 
+distinct(aisle)
+```
+```{r}
+instacart_df %>% 
+distinct(department)
+```
+Use plotly to make plots.
+Bar chart for number of orders for each kind of product
+```{r}
+instacart_df %>%
+  count(department) %>% 
+  mutate(
+    department = fct_reorder(department, n)) %>% 
+  plot_ly(x = ~department, y = ~n, color = ~department,
+          type = "bar") %>% 
+  layout(title = "Order Frequency by Department",
+         xaxis = list(title = "Department"),
+         yaxis = list(title = "Orders"))
+```
+Fresh fruits and vegetables are the most frequently ordered on instacart.
+
+```{r}
+day_department_counts = instacart_df %>% 
+  count(order_dow, department) 
+
+plot_ly(day_department_counts, x = ~order_dow, y = ~department, z = ~n, 
+        type = "heatmap", colors = "Blues") %>% 
+  layout(title = "Order Frequency by Day of Week and Department",
+         xaxis = list(title = "Day of the Week"),
+         yaxis = list(title = "Department"))
+```
+Customers are more likely to order fresh fruits and vegetable on Sundays than other days of the week.
+```{r}
+hourly_department_counts = instacart_df %>%
+  count(order_hour_of_day, department)
+
+plot_ly(hourly_department_counts, x = ~order_hour_of_day, y = ~n, 
+        type = "scatter",
+        mode = "lines", 
+        color = ~department) %>%
+  layout(title = "Order Frequency by Hour of Day and Department",
+         xaxis = list(title = "Hour of the Day",
+                      tickvals = 0:23),
+         yaxis = list(title = "Number of Orders"))
+```
+Order times differ between types of product. For example, fresh produce, dairy and eggs are ordered early in the day, whereas snacks tend to be ordered later.
+
