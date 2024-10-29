@@ -1,18 +1,34 @@
 ---
-title: "My awesome website"
+title: "Ziyu (Alice) Zhou 周子钰"
 output: 
   html_document:
     toc: true
     toc_float: true
 ---
+## Introduction
+<img src="pics/zzy.JPG" style="width:50%">
 
-# This is Jeff's awesome website
+Hi! I am Alice Zhou. I am a first-year MS student in Biostatistics at Columbia Mailman School of Public Health. Before attending Columbia, I studied Psychology and Philosophy at NYU.
 
-![](https://media.giphy.com/media/drXGoW1iudhKw/giphy.gif)
+## Self Identity
 
-sometimes I use [google](https://www.google.com/) to do data science
+\#Polyglot
 
-This is my cat Mimi. She is so pretty!
-![](Mimi.JPG)
+\#Dance Enthusiast
 
-If you'd like to learn more about this website, visit [this page](about.html)
+\#Avid Concert Goer
+
+\#Pretty Bad Surfer
+
+\#Foodie
+
+\#Made in China
+
+\#Pride
+
+
+This is my cat 咪咪("MiMi"). She is a great cat!
+
+<img src="pics/Mimi.JPG" style="width:50%">
+
+If you'd like to learn more about me, you can read my [CV](cv.html).
