@@ -25,10 +25,10 @@ instacart_df =
 ))
 ```
 
-Column {data-width=650}
+Column {data-width=550}
 -----------------------------------------------------------------------
 
-### Order Frequency by Hour of Day and Department
+### Figure A
 ```{r}
 hourly_department_counts = instacart_df %>%
   count(order_hour_of_day, department)
@@ -37,16 +37,17 @@ plot_ly(hourly_department_counts, x = ~order_hour_of_day, y = ~n,
         type = "scatter",
         mode = "lines", 
         color = ~department) %>%
-  layout(xaxis = list(title = "Hour of the Day",
+  layout(title = "Order Frequency by Hour of Day and Department",
+    xaxis = list(title = "Hour of the Day",
                       tickvals = 0:23),
          yaxis = list(title = "Number of Orders"))
 ```
 Fresh fruits and vegetables are the most frequently ordered on instacart.
 
-Column {data-width=350}
+Column {data-width=400}
 -----------------------------------------------------------------------
 
-### Order Frequency by Day of Week and Department
+### Figure B
 
 ```{r}
 day_department_counts = instacart_df %>% 
@@ -54,12 +55,12 @@ day_department_counts = instacart_df %>%
 
 plot_ly(day_department_counts, x = ~order_dow, y = ~department, z = ~n, 
         type = "heatmap", colors = "Blues") %>% 
-  layout(
+  layout(title = "Order Frequency by Weekday and Department",
          xaxis = list(title = "Day of the Week"),
          yaxis = list(title = "Department"))
 ```
 
-### Order Frequency by Department
+### Figure C
 
 ```{r}
 instacart_df %>%
@@ -68,7 +69,7 @@ instacart_df %>%
     department = fct_reorder(department, n)) %>% 
   plot_ly(x = ~department, y = ~n, color = ~department,
           type = "bar") %>% 
-  layout(
+  layout(title = "Order Frequency by Department",
          xaxis = list(title = "Department"),
          yaxis = list(title = "Orders"))
 ```
